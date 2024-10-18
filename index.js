@@ -10,20 +10,21 @@ program
 program.command('count')
   .description('number of words in a file')
   .argument('<file>', 'file to count')
-  .action(file) => {
-    fs.readFile(file, 'utf-8', (err,data) => {
+  .action((file) => {
+    fs.readFile(file, 'utf-8', (err, data) => {
       if (err) {
-      console.log("error")
-    } else {
-      let words = 0
-      for(i = 0, i <= data.length, i++) {
-        if(data[i] === ' ') {
-        words++
+        console.error(err);
+        return;
+      } else {
+        let words = 0;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i] === ' ' || data[i] === '\n' || data[i] === '\t') {
+            words++;
+          }
         }
+        console.log(`There are ${words + 1} words in ${file}`);
       }
-      console.log(`There are ${words +1} words in ${file}`)
-    }
-  })
-  }
+    });
+  });
 
-  program.parse();
+program.parse();
