@@ -7,7 +7,7 @@ program
   .description('CLI to do file based tasks')
   .version('0.8.0')
 
-program.command('count')
+program.command('count-words')
   .description('number of words in a file')
   .argument('<file>', 'file to count')
   .action((file) => {
